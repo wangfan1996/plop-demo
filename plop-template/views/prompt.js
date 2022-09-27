@@ -1,16 +1,16 @@
 
 module.exports = {
-    "description":"generator a component",
+    "description":"生成一个vue页面",
     "prompts":[
         {
             type: 'input',    //提示信息的类型 input 输入 checkbox 选择 list 列表
             name: 'view',  //字段的名称
-            message: 'controller name please'  //提示的信息说明
+            message: '请输入创建的目录/文件(eg: index/index(src/views/下面创建index文件夹/index.vue))'  //提示的信息说明
         },
         {
             type: 'checkbox',
             name: 'blocks',
-            message: 'Blocks:',
+            message: '请选择需要的模块(*)需要()不需要',
             choices: [
             {
               name: '<template>',
@@ -23,7 +23,7 @@ module.exports = {
               checked: true
             },
             {
-              name: 'style',
+              name: '<style>',
               value: 'style',
               checked: true
             }
@@ -31,11 +31,12 @@ module.exports = {
         }
     ],
     actions:function(data){
+    // path 改存储路径
         
         const configs = [
             {
             type:"add",
-            path:"views/{{view}}.vue",
+            path:"src/views/{{view}}.vue",
             templateFile:"plop-template/views/index.hbs",
             data:{
                 name:data.name,
